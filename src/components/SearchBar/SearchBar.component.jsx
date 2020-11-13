@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { SearchBarStyled, SearchTitle, SearchInput } from './SearchBar.styles'
 
-function SearchBar() {
-  const [searchValue, setSearchValue] = useState('')
+function SearchBar({ onSearchPokemon }) {
+  const [searchName, setSearchName] = useState('')
+
   function handleSearchSubmit(ev) {
     ev.preventDefault()
-    console.log('Search value', searchValue)
+    onSearchPokemon(searchName)
   }
   return (
     <SearchBarStyled onSubmit={handleSearchSubmit}>
@@ -14,8 +15,8 @@ function SearchBar() {
         name='search'
         id='search'
         placeholder='e.g. bulbasaur'
-        value={searchValue}
-        onChange={ev => setSearchValue(ev.target.value)}
+        value={searchName}
+        onChange={ev => setSearchName(ev.target.value)}
       />
     </SearchBarStyled>
   )
